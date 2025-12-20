@@ -7,3 +7,5 @@ upgrade_path.md
 *.tgz
 eslint.config.js
 .travis.yml
+sonarcloud.properties
+.sonarcloud.properties

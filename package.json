@@ -32,7 +32,6 @@
     "@typescript-eslint/parser": "^8.50.0",
     "babel-jest": "^30.2.0",
     "eslint": "^9.39.2",
-    "eslint-config-eta-dev": "^1.0.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^7.2.1",
@@ -43,6 +42,10 @@
   },
   "jest": {
     "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "lib/**/*.js",
+      "!lib/**/index.js"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test/"

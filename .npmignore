@@ -10,3 +10,5 @@ eslint.config.js
 sonarcloud.properties
 .sonarcloud.properties
 .sonarlint/
+.github/
+.vscode/

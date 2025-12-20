@@ -1,6 +1,6 @@
 {
   "name": "@jeffcaradona/eslint-plugin-eta",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "An ESLint plugin so you can lint Eta template files (forked from bgub/eslint-plugin-eta)",
   "type": "module",
   "main": "lib/index.js",
@@ -23,8 +23,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeffcaradona/eslint-plugin-eta.git",
-    "baseUrl": "https://github.com/bgub/eslint-plugin-eta"
+    "url": "git+https://github.com/jeffcaradona/eslint-plugin-eta.git"
+    
   },
   "peerDependencies": {
     "eslint": ">=9 <10",

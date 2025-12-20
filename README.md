@@ -1,5 +1,5 @@
 # eslint-plugin-eta
-An ESLint plugin so you can lint Eta template files (forked from <https://github.com/bgub/eslint-plugin-eta>)
+An ESLint plugin so you can lint Eta template files (forked from <https://github.com/bgub/eslint-plugin-eta>) with so much assistance from GitHub Copilot. 
 
 <span align="center">
 

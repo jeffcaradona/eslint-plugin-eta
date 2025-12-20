@@ -9,3 +9,4 @@ eslint.config.js
 .travis.yml
 sonarcloud.properties
 .sonarcloud.properties
+.sonarlint/

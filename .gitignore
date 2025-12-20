@@ -14,3 +14,4 @@ test-output.txt
 .sonarcloud.properties
 .sonar/
 .scannerwork/
+.sonarlint/

@@ -6,7 +6,7 @@ export default [
   {
     languageOptions: {
       ecmaVersion: 2020,
-      sourceType: 'script',
+      sourceType: 'module',
       globals: {
         ...globals.node,
         ...globals.jest

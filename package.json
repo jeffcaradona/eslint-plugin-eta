@@ -1,6 +1,6 @@
 {
   "name": "@jeffcaradona/eslint-plugin-eta",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "An ESLint plugin so you can lint Eta template files",
   "type": "module",
   "main": "lib/index.js",
@@ -26,6 +26,7 @@
     "eta": ">=1.0.0 <5.0.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.5",
     "@eslint/compat": "^2.0.0",
     "@istanbuljs/load-nyc-config": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
@@ -42,6 +43,9 @@
   },
   "jest": {
     "testEnvironment": "node",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
     "collectCoverageFrom": [
       "lib/**/*.js",
       "!lib/**/index.js"

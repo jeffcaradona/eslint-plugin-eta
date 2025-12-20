@@ -1,4 +1,4 @@
-const processor = require('../../../lib/processors/eta')
+import processor from '../../../lib/processors/eta.js'
 
 describe('processor', () => {
   describe('preprocess', () => {

@@ -11,3 +11,6 @@ test-output.txt
 .env
 .env.local
 .eslintcache
+.sonarcloud.properties
+.sonar/
+.scannerwork/

@@ -34,5 +34,13 @@ describe('processor', () => {
     it('should be a function', () => {
       expect(typeof processor.postprocess).toBe('function')
     })
+    it('should flatten nested message arrays', () => {
+      const messages = [[{ message: 'error1' }], [{ message: 'error2' }]]
+      const result = processor.postprocess(messages)
+      expect(result).toEqual([
+        { message: 'error1' },
+        { message: 'error2' }
+      ])
+    })
   })
 })

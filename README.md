@@ -1,4 +1,5 @@
 # eslint-plugin-eta
+An ESLint plugin so you can lint Eta template files (forked from bengubler/eslint-plugin-eta)
 
 <span align="center">
 
@@ -12,22 +13,20 @@
 
 
 ### Installation
-Run `npm install --save-dev eslint-plugin-eta` to install this ESLint plugin.
+Run `npm install --save-dev @jeffcaradona/eslint-plugin-eta` to install this ESLint plugin.
 
 ### Usage
-Add this to your ESLint config:
+Add this to your `eslint.config.js`:
 ```javascript
-module.exports = {
-    ...
-    plugins: [
-        "eta"
-    ],
-    overrides: [
-        {
-            files: ["*.eta"],
-            processor: "eta/eta"
-        }
-    ],
-    ...
-}
+import eta from '@jeffcaradona/eslint-plugin-eta'
+
+export default [
+    {
+        files: ['**/*.eta'],
+        plugins: {
+            eta
+        },
+        processor: 'eta/eta'
+    }
+]
 ```

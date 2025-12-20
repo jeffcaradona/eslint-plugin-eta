@@ -1,10 +1,9 @@
 # eslint-plugin-eta
-An ESLint plugin so you can lint Eta template files (forked from bengubler/eslint-plugin-eta)
+An ESLint plugin so you can lint Eta template files (forked from <https://github.com/bgub/eslint-plugin-eta>)
 
 <span align="center">
 
-[![Travis](https://img.shields.io/travis/com/eta-dev/eslint-plugin-eta/master.svg)](https://travis-ci.com/eta-dev/eslint-plugin-eta)
-[![Coveralls](https://img.shields.io/coveralls/eta-dev/eslint-plugin-eta.svg)](https://coveralls.io/github/eta-dev/eslint-plugin-eta)
+
 
 </span>
 

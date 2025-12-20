@@ -39,3 +39,9 @@ Target: move to ESLint 9.x (flat config support) while stepping dependencies thr
 - After each stage, run: npm test, npm run lint, npm run format (post-Prettier 3) to isolate regressions.
 - Add processor-focused tests to lock Eta.parse output and ensure extracted JS matches expectations.
 - Update README usage to note supported ESLint 9.x and Eta major once validated.
+
+## Completed ✓
+- ✓ Migrated to ESLint 9.x with flat config (eslint.config.js)
+- ✓ Updated README to use flat config syntax
+- ✓ Peer dependencies set to eslint ">=9 <10"
+- ✓ Added repository metadata with fork information to package.json

@@ -4,7 +4,6 @@
   "description": "An ESLint plugin so you can lint Eta template files",
   "type": "module",
   "main": "lib/index.js",
-
   "scripts": {
     "test": "jest --coverage",
     "test:prod": "npm run lint && npm run test -- --no-cache",
@@ -28,15 +27,15 @@
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.0",
+    "@istanbuljs/load-nyc-config": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
     "@typescript-eslint/parser": "^8.50.0",
-    "coveralls": "^3.1.1",
+    "babel-jest": "^30.2.0",
     "eslint": "^9.39.2",
     "eslint-config-eta-dev": "^1.0.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^7.2.1",
-    "eslint-plugin-standard": "^5.0.0",
     "eta": "^4.5.0",
     "jest": "^30.2.0",
     "prettier": "^3.7.4",

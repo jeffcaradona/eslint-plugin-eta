@@ -1,3 +1,9 @@
 node_modules
 test
 coverage
+test-output.txt
+ETA_V4_API_RESEARCH.md
+upgrade_path.md
+*.tgz
+eslint.config.js
+.travis.yml

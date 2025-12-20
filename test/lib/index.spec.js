@@ -1,4 +1,4 @@
-const EtaEslint = require('../../lib/index')
+import EtaEslint from '../../lib/index.js'
 
 describe('EtaEslint', () => {
   it("should be an object", () => {

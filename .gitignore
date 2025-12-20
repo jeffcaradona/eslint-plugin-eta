@@ -1,2 +1,13 @@
 node_modules
 coverage
+package-lock.json
+.vscode
+.DS_Store
+dist
+test-output.txt
+.nyc_output
+*.tgz
+.npmrc
+.env
+.env.local
+.eslintcache

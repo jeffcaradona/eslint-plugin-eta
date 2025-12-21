@@ -4,7 +4,6 @@ An ESLint plugin so you can lint Eta template files (forked from <https://github
 <span align="center">
 
 
-
 </span>
 
 > Lint your embeddable Eta templates with ease

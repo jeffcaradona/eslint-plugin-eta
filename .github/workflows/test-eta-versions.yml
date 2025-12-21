@@ -25,7 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm ci --ignore-scripts
+        run: npm install --ignore-scripts
 
       - name: Install Eta v${{ matrix.eta-version }}
         run: npm install eta@${{ matrix.eta-version }} --ignore-scripts

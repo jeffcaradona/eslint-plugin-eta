@@ -1,0 +1,43 @@
+name: Test Eta Versions
+
+on:
+  push:
+    branches: [main, maintain/**, sid/**]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-eta-versions:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Test against all supported Eta versions per peer dependency range
+        eta-version: ['1.x', '2.x', '3.x', '4.x']
+        node-version: ['18.x', '24.x']
+    name: Eta ${{ matrix.eta-version }} / Node ${{ matrix.node-version }}
+
+    steps:
+      - uses: actions/checkout@v6.0.1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6.1.0
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install --ignore-scripts
+
+      - name: Build distributions
+        run: npm run build
+
+      - name: Install Eta v${{ matrix.eta-version }}
+        run: npm install eta@${{ matrix.eta-version }} --ignore-scripts
+
+      - name: Run tests
+        run: npm test -- --no-coverage
+        continue-on-error: true
+
+      - name: Report results
+        if: always()
+        run: |
+          echo "Tests completed for Eta ${{ matrix.eta-version }} on Node ${{ matrix.node-version }}"

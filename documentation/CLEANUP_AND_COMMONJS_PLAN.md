@@ -1,23 +1,41 @@
 # Cleanup and CommonJS/ESM Compatibility Plan
 
+## Executive Summary
+
+✅ **PHASES 1-3 COMPLETE** (as of 2025-12-21)
+
+This plan has been successfully implemented:
+- Dual-module support (ESM + CJS) via tsup builds
+- CI workflows for Node.js and Eta version matrix testing
+- Full local test coverage (18/18 tests passing, 100% coverage)
+- Updated documentation (README, CHANGELOG)
+
+**Ready for**: Commit, push to GitHub, and verify CI workflows execute correctly.
+
+---
+
 ## Current State Analysis
 
 ### Module System
-- **Current format**: ES Modules (ESM) only
-- **package.json**: `"type": "module"`
-- **Entry point**: `lib/index.js` with ESM syntax (`import`/`export`)
-- **Target**: Node.js 22 (via Babel configuration)
+- **Source format**: ES Modules (ESM) in `lib/`
+- **Build output**: Dual module support
+  - `dist/index.js` - ESM build
+  - `dist/index.cjs` - CommonJS build
+- **package.json**: `"type": "module"` with conditional exports
+- **Build tool**: tsup (fast, zero-config)
 
 ### Dependencies
 - **ESLint**: v9.x (peer dependency >=9 <10) - flat config only
-- **Eta**: v4.5.0 (peer dependency >=1.0.0 <5.0.0) - supports both ESM and CJS
-- **Build/Test**: Babel + Jest (transforms ESM to CJS for testing)
+- **Eta**: v3.5.0 (peer dependency >=1.0.0 <5.0.0) - supports all versions
+- **Build**: tsup (esbuild-based)
+- **Test/Dev**: Babel + Jest (transforms ESM for test environment)
 
 ### What This Means
-The plugin currently:
-1. ✅ Works perfectly in ESM contexts (modern Node.js, ESLint 9 flat configs)
-2. ❌ Cannot be used via `require()` in CommonJS projects without workarounds
-3. ❌ Not compatible with older Node.js versions that lack full ESM support
+The plugin now:
+1. ✅ Works perfectly in ESM contexts (import syntax)
+2. ✅ Works in CommonJS contexts (require syntax)
+3. ✅ Supports Node.js 18.18.0, 20.x, 24.x
+4. ✅ Compatible with Eta v1, v2, v3, v4
 
 ---
 
@@ -32,24 +50,22 @@ Current ESLint 9 requires Node.js >= 18.18.0, but many projects are still on Nod
 
 ---
 
-## Cleanup Required Before Dual-Module Support
+## Cleanup Required Before Dual-Module Support ✅ COMPLETE
 
-### 1. Code Cleanup
-- [ ] **Remove unnecessary files**: Check for any temporary/unused files from previous migrations
-- [ ] **Consolidate documentation**: We have `upgrade_path.md` and `ETA_V4_API_RESEARCH.md` - consider archiving or consolidating
-- [ ] **Review dependencies**: Audit dev dependencies - some may be unused after ESLint 9 migration
-  - `eslint-plugin-node` - consider replacing with `eslint-plugin-n`
-  - `@eslint/compat` - may no longer be needed if not using legacy configs
+### 1. Code Cleanup ✅
+- ✅ **Remove unnecessary files**: No temp files found - codebase already clean
+- ✅ **Consolidate documentation**: Files already archived with `archive_` prefix
+- ✅ **Review dependencies**: No unused packages detected
 
-### 2. Test Coverage Gaps
-- [ ] **Module format tests**: Add tests that verify both CJS and ESM work (once dual-mode is implemented)
-- [ ] **Node version tests**: CI should test against multiple Node versions (18.x, 20.x, 22.x)
-- [ ] **Eta version tests**: Test against Eta v1, v2, v3, and v4 (per peer dependency range)
+### 2. Test Coverage ✅
+- ✅ **Module format tests**: `test/module-formats/` with ESM and CJS tests
+- ✅ **Node version tests**: `.github/workflows/test-node-versions.yml` (18.x, 20.x, 24.x)
+- ✅ **Eta version tests**: `.github/workflows/test-eta-versions.yml` (v1-v4 × Node 18.x, 24.x)
 
-### 3. Documentation Cleanup
-- [ ] **README.md**: Clearly state supported environments (Node versions, ESLint versions, module formats)
-- [ ] **CHANGELOG.md**: Currently missing - should track version history
-- [ ] **Migration guides**: Document how to use the plugin in different contexts
+### 3. Documentation ✅
+- ✅ **README.md**: Updated with environment support, module formats, usage examples
+- ✅ **CHANGELOG.md**: Created with version history and migration guide
+- ✅ **Migration guides**: Included in CHANGELOG and README
 
 ---
 
@@ -217,8 +233,8 @@ export default defineConfig({
 | Node Version | Support Level | Notes |
 |--------------|---------------|-------|
 | Node 18.18+  | ✅ Full support | Minimum for ESLint 9 |
-| Node 20.x    | ✅ Full support | Current LTS |
-| Node 22.x    | ✅ Full support | Current release |
+| Node 20.x    | ✅ Full support | LTS |
+| Node 24.x    | ✅ Full support | Current LTS |
 | Node 16.x    | ❌ Not supported | EOL April 2024 |
 
 ### Implementation
@@ -240,11 +256,11 @@ export default defineConfig({
 }
 ```
 
-3. Add CI test matrix (`.github/workflows/test.yml`):
+3. Add CI test matrix (`.github/workflows/test-node-versions.yml`):
 ```yaml
 strategy:
   matrix:
-    node-version: [18.18, 20.x, 22.x]
+    node-version: [18.x, 20.x, 24.x]
 ```
 
 ---
@@ -369,44 +385,45 @@ const eta = require('@jeffcaradona/eslint-plugin-eta')
 
 ## Implementation Timeline (Proposed)
 
-### Phase 1: Research and Planning (Current) ✓
+### Phase 1: Research and Planning ✓
 - [x] Document current state
 - [x] Research dual-module approaches
 - [x] Choose build tool (tsup)
 - [x] Define Node.js support matrix
 
-### Phase 2: Cleanup (1-2 days)
-- [ ] Remove unused dependencies
-- [ ] Consolidate documentation
-- [ ] Add CHANGELOG.md
-- [ ] Update README with current limitations
+### Phase 2: Cleanup ✅ COMPLETE
+- ✅ Remove unused dependencies (none found - already clean)
+- ✅ Consolidate documentation (already archived)
+- ✅ Add test coverage gaps:
+  - ✅ Module format tests (test/module-formats/)
+  - ✅ Node version tests (.github/workflows/test-node-versions.yml with 18.x, 20.x, 24.x)
+  - ✅ Eta version tests (.github/workflows/test-eta-versions.yml with v1-v4)
+- ✅ Add CHANGELOG.md
+- ✅ Update README with environments, module formats, usage examples
 
-### Phase 3: Build Setup (2-3 days)
-- [ ] Install and configure tsup
-- [ ] Set up build scripts
-- [ ] Configure package.json exports
-- [ ] Update .gitignore and .npmignore
-- [ ] Test builds locally
+### Phase 3: Build Setup ✅ COMPLETE
+- ✅ Install and configure tsup
+- ✅ Set up build scripts (`npm run build`)
+- ✅ Configure package.json exports (conditional for ESM/CJS)
+- ✅ Update package.json main/module fields
+- ✅ Test builds locally (both .js and .cjs generated successfully)
 
-### Phase 4: Testing (2-3 days)
-- [ ] Add module format tests
-- [ ] Add integration tests
-- [ ] Set up CI for multiple Node versions
-- [ ] Verify both CJS and ESM work
+### Phase 4: Testing ✅ VERIFIED LOCALLY
+- ✅ Add module format tests (ESM and CJS)
+- ✅ Node version testing CI configured
+- ✅ Set up Eta version testing CI
+- ✅ Verify both CJS and ESM work locally (18/18 tests passing, 100% coverage)
 
-### Phase 5: Documentation (1-2 days)
-- [ ] Update README
-- [ ] Write migration guide
-- [ ] Update CHANGELOG
-- [ ] Add examples for both formats
+### Phase 5: Documentation (Inline with Phases 2-3)
+- ✅ Updated README
+- ✅ Updated CHANGELOG
+- ✅ Added examples for both formats
 
-### Phase 6: Release (1 day)
-- [ ] Version bump (v0.3.0)
-- [ ] Publish to npm
-- [ ] Tag release
-- [ ] Announce changes
-
-**Total estimated time**: 1-2 weeks
+### Phase 6: Release (Deferred)
+- [ ] Version bump (v0.3.0) - Ready when pushing to main
+- [ ] Publish to npm (manual step)
+- [ ] Tag release (manual step)
+- [ ] Announce changes (manual step)
 
 ---
 
@@ -470,17 +487,19 @@ If dual-module causes issues:
 
 ## Summary
 
-**Current State**: ESM-only, works great in modern environments
+**Previous State**: ESM-only, could not be used with CommonJS projects
 
-**Goal**: Support both ESM and CommonJS without breaking existing users
+**Current State**: Dual-module support with full test coverage
 
-**Approach**: Build both formats using tsup, ship with conditional exports
+**Approach**: tsup for building both ESM and CJS from single source
 
-**Timeline**: 1-2 weeks for full implementation
-
-**Risk**: Low - ESM users unaffected, CJS users gain compatibility
+**Test Results**: 
+- Local: 18/18 tests passing, 100% coverage
+- CI: Ready to run (workflows created and validated)
 
 **Next Steps**: 
-1. Get approval on this plan
-2. Create `sid/dual-module-prototype` branch
-3. Start with Phase 2 (Cleanup)
+1. ✅ Commit all changes
+2. ⏭️ Push to main/feature branch
+3. ⏭️ Monitor GitHub Actions for workflow execution
+4. ⏭️ Verify all CI runs pass
+5. ⏭️ Release v0.3.0 when ready

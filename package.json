@@ -1,16 +1,25 @@
 {
   "name": "@jeffcaradona/eslint-plugin-eta",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "An ESLint plugin so you can lint Eta template files (forked from bgub/eslint-plugin-eta)",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
+    "build": "tsup",
     "test": "jest --coverage",
     "test:prod": "npm run lint && npm run test -- --no-cache",
     "test:watch": "jest --coverage --watch",
     "format": "prettier --write lib/**/*.js test/**/*.js",
     "lint": "eslint lib/**/*.js test/**/*.js --ext .js",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "eslint",
@@ -20,11 +29,16 @@
   "contributors": [
     "Ben Gubler (Original Author)"
   ],
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jeffcaradona/eslint-plugin-eta.git"
-    
   },
   "peerDependencies": {
     "eslint": ">=9 <10",
@@ -32,18 +46,17 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.28.5",
-    "@eslint/compat": "^2.0.0",
     "@istanbuljs/load-nyc-config": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
     "@typescript-eslint/parser": "^8.50.0",
     "babel-jest": "^30.2.0",
     "eslint": "^9.39.2",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^7.2.1",
-    "eta": "^4.5.0",
+    "eta": "^3.5.0",
     "jest": "^30.2.0",
     "prettier": "^3.7.4",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "jest": {

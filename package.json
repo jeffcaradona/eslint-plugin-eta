@@ -18,7 +18,6 @@
     "test:watch": "jest --coverage --watch",
     "format": "prettier --write lib/**/*.js test/**/*.js",
     "lint": "eslint lib/**/*.js test/**/*.js --ext .js",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

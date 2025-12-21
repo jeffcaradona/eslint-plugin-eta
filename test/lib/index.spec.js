@@ -1,8 +1,8 @@
 import EtaEslint from '../../lib/index.js'
 
 describe('EtaEslint', () => {
-  it("should be an object", () => {
-      expect(typeof EtaEslint).toBe('object')
+  it('should be an object', () => {
+    expect(typeof EtaEslint).toBe('object')
   })
   describe('.processors', () => {
     it('should be an object', () => {

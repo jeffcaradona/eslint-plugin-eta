@@ -3,6 +3,8 @@
 ## Overview
 This document outlines the branching strategy for the eslint-plugin-eta project, with a focus on managing experimental work and maintaining multiple versions.
 
+Uses GitFlow strategy since we will have long lived maintenance branches to maintain existing version while also developing new versions and maintaining compatibility.
+
 ---
 
 ## Branch Types

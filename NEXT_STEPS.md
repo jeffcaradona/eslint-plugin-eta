@@ -307,7 +307,7 @@ You'll know the implementation is complete when:
 
 ✅ **Publishing**:
 - Package.json has correct `exports` field
-- `.npmignore` includes source, excludes dist incorrectly
+- `"files": ["dist"]` in package.json includes only build output
 - Published package installs and works
 
 ---
@@ -322,10 +322,10 @@ You'll know the implementation is complete when:
 - Use `.js` for source (ESM)
 - Let tsup generate `.cjs` for CommonJS build
 
-❌ **Don't** forget to update `.npmignore`
-- Include `dist/` in published package
-- Exclude `lib/` (source) from published package
-- Or use `"files": ["dist"]` in package.json
+❌ **Don't** forget to configure published files correctly
+- Use `"files": ["dist"]` in package.json to include only built output
+- This excludes source (`lib/`) from published package
+- Alternatively, use `.npmignore` to exclude `lib/`, `test/`, etc.
 
 ❌ **Don't** break existing ESM users
 - Test that current usage still works

@@ -197,10 +197,7 @@ eslint-plugin-eta/
 eslint-plugin-eta/
 ├── dist/                             # Built output (gitignored)
 │   ├── index.cjs                     # CommonJS build
-│   ├── index.js                      # ESM build
-│   └── processors/
-│       ├── eta.cjs
-│       └── eta.js
+│   └── index.js                      # ESM build
 │
 ├── lib/                              # Source (ESM)
 ├── test/

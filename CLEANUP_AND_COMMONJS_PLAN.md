@@ -166,7 +166,7 @@ npm install --save-dev tsup
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['lib/index.js', 'lib/processors/eta.js'],
+  entry: ['lib/index.js'],
   format: ['cjs', 'esm'],
   outDir: 'dist',
   clean: true,
@@ -191,10 +191,6 @@ export default defineConfig({
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./processors/eta": {
-      "import": "./dist/processors/eta.js",
-      "require": "./dist/processors/eta.cjs"
     }
   },
   "scripts": {

@@ -300,6 +300,10 @@ git checkout -b feature/custom-tag-support
 
 ### Creating Branches
 ```bash
+# Always start from updated main
+git checkout main
+git pull origin main
+
 # Experimental branch
 git checkout -b sid/<name>
 

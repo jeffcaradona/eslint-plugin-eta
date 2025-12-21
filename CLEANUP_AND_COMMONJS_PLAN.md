@@ -62,12 +62,12 @@ Current ESLint 9 requires Node.js >= 18.18.0, but many projects are still on Nod
 ```json
 {
   "type": "module",
-  "main": "./dist/cjs/index.cjs",      // CJS entry for old environments
-  "module": "./dist/esm/index.js",      // ESM entry for bundlers
+  "main": "./dist/index.cjs",      // CJS entry for old environments
+  "module": "./dist/index.js",      // ESM entry for bundlers
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",  // ESM import
-      "require": "./dist/cjs/index.cjs" // CJS require
+      "import": "./dist/index.js",  // ESM import
+      "require": "./dist/index.cjs" // CJS require
     }
   }
 }

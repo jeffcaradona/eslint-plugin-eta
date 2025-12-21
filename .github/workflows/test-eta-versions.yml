@@ -26,10 +26,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Install Eta v${{ matrix.eta-version }}
-        run: npm install eta@${{ matrix.eta-version }}
+        run: npm install eta@${{ matrix.eta-version }} --ignore-scripts
 
       - name: Run tests
         run: npm test -- --no-coverage

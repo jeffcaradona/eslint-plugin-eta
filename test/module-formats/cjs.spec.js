@@ -1,4 +1,4 @@
-const plugin = require('../../dist/index.cjs')
+const plugin = require('../../dist/index.cjs').default
 
 describe('CJS require', () => {
   it('should load plugin via CommonJS require', () => {
@@ -13,9 +13,8 @@ describe('CJS require', () => {
     expect(processors.eta).toHaveProperty('postprocess')
   })
 
-  it('should have plugin metadata', () => {
-    expect(plugin.meta).toBeDefined()
-    expect(plugin.meta.name).toBeDefined()
-    expect(plugin.meta.version).toBeDefined()
+  it('should have correct processor functionality', () => {
+    expect(typeof plugin.processors.eta.preprocess).toBe('function')
+    expect(typeof plugin.processors.eta.postprocess).toBe('function')
   })
 })

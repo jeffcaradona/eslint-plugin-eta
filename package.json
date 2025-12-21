@@ -3,14 +3,23 @@
   "version": "0.3.0",
   "description": "An ESLint plugin so you can lint Eta template files (forked from bgub/eslint-plugin-eta)",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
+    "build": "tsup",
     "test": "jest --coverage",
     "test:prod": "npm run lint && npm run test -- --no-cache",
     "test:watch": "jest --coverage --watch",
     "format": "prettier --write lib/**/*.js test/**/*.js",
     "lint": "eslint lib/**/*.js test/**/*.js --ext .js",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "eslint",
@@ -24,6 +33,9 @@
     "node": ">=18.18.0"
   },
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jeffcaradona/eslint-plugin-eta.git"
@@ -44,6 +56,7 @@
     "eta": "^3.5.0",
     "jest": "^30.2.0",
     "prettier": "^3.7.4",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "jest": {

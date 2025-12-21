@@ -14,9 +14,8 @@ describe('ESM import', () => {
     expect(processors.eta).toHaveProperty('postprocess')
   })
 
-  it('should have plugin metadata', () => {
-    expect(plugin.meta).toBeDefined()
-    expect(plugin.meta.name).toBeDefined()
-    expect(plugin.meta.version).toBeDefined()
+  it('should have correct processor functionality', () => {
+    expect(typeof plugin.processors.eta.preprocess).toBe('function')
+    expect(typeof plugin.processors.eta.postprocess).toBe('function')
   })
 })

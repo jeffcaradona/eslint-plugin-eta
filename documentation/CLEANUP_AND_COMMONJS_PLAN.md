@@ -59,8 +59,8 @@ Current ESLint 9 requires Node.js >= 18.18.0, but many projects are still on Nod
 
 ### 2. Test Coverage ✅
 - ✅ **Module format tests**: `test/module-formats/` with ESM and CJS tests
-- ✅ **Node version tests**: `.github/workflows/test.yml` (18.18.0, 20.x, 24.x)
-- ✅ **Eta version tests**: `.github/workflows/test-eta-versions.yml` (v1-v4)
+- ✅ **Node version tests**: `.github/workflows/test-node-versions.yml` (18.x, 20.x, 24.x)
+- ✅ **Eta version tests**: `.github/workflows/test-eta-versions.yml` (v1-v4 × Node 18.x, 24.x)
 
 ### 3. Documentation ✅
 - ✅ **README.md**: Updated with environment support, module formats, usage examples
@@ -256,11 +256,11 @@ export default defineConfig({
 }
 ```
 
-3. Add CI test matrix (`.github/workflows/test.yml`):
+3. Add CI test matrix (`.github/workflows/test-node-versions.yml`):
 ```yaml
 strategy:
   matrix:
-    node-version: [18.18, 20.x, 24.x]
+    node-version: [18.x, 20.x, 24.x]
 ```
 
 ---
@@ -396,8 +396,8 @@ const eta = require('@jeffcaradona/eslint-plugin-eta')
 - ✅ Consolidate documentation (already archived)
 - ✅ Add test coverage gaps:
   - ✅ Module format tests (test/module-formats/)
-  - ✅ Node version tests (.github/workflows/test.yml)
-  - ✅ Eta version tests (.github/workflows/test-eta-versions.yml)
+  - ✅ Node version tests (.github/workflows/test-node-versions.yml with 18.x, 20.x, 24.x)
+  - ✅ Eta version tests (.github/workflows/test-eta-versions.yml with v1-v4)
 - ✅ Add CHANGELOG.md
 - ✅ Update README with environments, module formats, usage examples
 

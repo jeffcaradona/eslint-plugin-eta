@@ -42,9 +42,9 @@ Current ESLint 9 requires Node.js >= 18.18.0, but many projects are still on Nod
   - `@eslint/compat` - may no longer be needed if not using legacy configs
 
 ### 2. Test Coverage Gaps
-- [ ] **Module format tests**: Add tests that verify both CJS and ESM work (once dual-mode is implemented)
-- [ ] **Node version tests**: CI should test against multiple Node versions (18.x, 20.x, 22.x)
-- [ ] **Eta version tests**: Test against Eta v1, v2, v3, and v4 (per peer dependency range)
+- ✅ **Module format tests**: Created test/module-formats/ with ESM and CJS test stubs (will run after Phase 3)
+- ✅ **Node version tests**: Created .github/workflows/test.yml with Node 18.18.0, 20.x, 24.x matrix
+- ✅ **Eta version tests**: Created .github/workflows/test-eta-versions.yml testing Eta v1, v2, v3, v4 across Node versions
 
 ### 3. Documentation Cleanup
 - [ ] **README.md**: Clearly state supported environments (Node versions, ESLint versions, module formats)
@@ -217,8 +217,8 @@ export default defineConfig({
 | Node Version | Support Level | Notes |
 |--------------|---------------|-------|
 | Node 18.18+  | ✅ Full support | Minimum for ESLint 9 |
-| Node 20.x    | ✅ Full support | Current LTS |
-| Node 22.x    | ✅ Full support | Current release |
+| Node 20.x    | ✅ Full support | LTS |
+| Node 24.x    | ✅ Full support | Current LTS |
 | Node 16.x    | ❌ Not supported | EOL April 2024 |
 
 ### Implementation
@@ -244,7 +244,7 @@ export default defineConfig({
 ```yaml
 strategy:
   matrix:
-    node-version: [18.18, 20.x, 22.x]
+    node-version: [18.18, 20.x, 24.x]
 ```
 
 ---
@@ -376,8 +376,9 @@ const eta = require('@jeffcaradona/eslint-plugin-eta')
 - [x] Define Node.js support matrix
 
 ### Phase 2: Cleanup (1-2 days)
-- [ ] Remove unused dependencies
-- [ ] Consolidate documentation
+- ✅ Remove unused dependencies
+- ✅ Consolidate documentation
+- ✅ Add Eta version testing (CI workflow)
 - [ ] Add CHANGELOG.md
 - [ ] Update README with current limitations
 

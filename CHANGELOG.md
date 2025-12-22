@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.0] - Unreleased
+
+## [0.3.1] - Unreleased
+
+### Changed
+- Updated .gitignore to allow tracking of package-lock.json 
+- Updated package-lock.json entry of "babel-plugin-istanbul" to use "test-exclude": "^7.0.1" to remove dependencies on glob@7.2.3 and inflight@1.0.6
+
+## [0.3.0] - Released
 
 ### Added
 - Dual module support (CommonJS + ESM) via conditional exports

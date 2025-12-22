@@ -9,8 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.1] - Unreleased
 
 ### Changed
+- Repo only update. No changes to dist, just devDependencies
 - Updated .gitignore to allow tracking of package-lock.json 
-- Updated package-lock.json entry of "babel-plugin-istanbul" to use "test-exclude": "^7.0.1" to remove dependencies on glob@7.2.3 and inflight@1.0.6
+- Updated package-lock.json entry of "babel-plugin-istanbul" to use "test-exclude": "^7.0.1"
+- remove dependencies on glob@7.2.3 and inflight@1.0.6
+
 
 ## [0.3.0] - Released
 

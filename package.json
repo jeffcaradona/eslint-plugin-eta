@@ -71,5 +71,8 @@
       "/node_modules/",
       "/test/"
     ]
+  },
+  "overrides": {
+    "test-exclude": "^7.0.1"
   }
 }

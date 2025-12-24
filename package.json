@@ -22,7 +22,8 @@
   },
   "keywords": [
     "eslint",
-    "eslintplugin"
+    "eslintplugin",
+    "eta"
   ],
   "author": "jeffcaradona <jeffcaradona@gmail.com>",
   "contributors": [

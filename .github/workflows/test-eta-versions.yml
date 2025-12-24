@@ -14,6 +14,7 @@ jobs:
         # Test against all supported Eta versions per peer dependency range
         eta-version: ['1.x', '2.x', '3.x', '4.x']
         node-version: ['18.x', '24.x']
+        eslint-version: ['8.x', '9.x']
     name: Eta ${{ matrix.eta-version }} / Node ${{ matrix.node-version }}
 
     steps:
@@ -31,7 +32,10 @@ jobs:
         run: npm run build
 
       - name: Install Eta v${{ matrix.eta-version }}
-        run: npm install eta@${{ matrix.eta-version }} --ignore-scripts
+        run: npm install --no-save --ignore-scripts  eta@${{ matrix.eta-version }}
+
+      - name: Install ESLint v${{ matrix.eslint-version }}
+        run: npm install --no-save --ignore-scripts eslint@${{ matrix.eslint-version }}
 
       - name: Run tests
         run: npm test -- --no-coverage

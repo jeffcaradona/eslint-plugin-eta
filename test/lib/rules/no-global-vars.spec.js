@@ -110,6 +110,121 @@ describe('no-global-vars', () => {
             data: { name: 'b' }
           }
         ]
+      },
+      {
+        code: 'const {x, y} = obj;',
+        languageOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module'
+        },
+        errors: [
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'x' }
+          },
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'y' }
+          }
+        ]
+      },
+      {
+        code: 'const [first, second] = array;',
+        languageOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module'
+        },
+        errors: [
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'first' }
+          },
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'second' }
+          }
+        ]
+      },
+      {
+        code: 'const {a: aliasedA, ...rest} = obj;',
+        languageOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module'
+        },
+        errors: [
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'aliasedA' }
+          },
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'rest' }
+          }
+        ]
+      },
+      {
+        code: 'const [head, ...tail] = array;',
+        languageOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module'
+        },
+        errors: [
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'head' }
+          },
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'tail' }
+          }
+        ]
+      },
+      {
+        code: 'const {nested: {deep}} = obj;',
+        languageOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module'
+        },
+        errors: [
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'deep' }
+          }
+        ]
+      },
+      {
+        code: 'const {x = 10, y = 20} = obj;',
+        languageOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module'
+        },
+        errors: [
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'x' }
+          },
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'y' }
+          }
+        ]
+      },
+      {
+        code: 'const [a = 1, b = 2] = array;',
+        languageOptions: {
+          ecmaVersion: 2020,
+          sourceType: 'module'
+        },
+        errors: [
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'a' }
+          },
+          {
+            messageId: 'noGlobalVars',
+            data: { name: 'b' }
+          }
+        ]
       }
     ]
   })

@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.1] - Unreleased
 
+### Added
+- Optional rule enforcement system
+- `eta/no-global-vars` rule to disallow global variable declarations in Eta templates
+- Two preset configurations: `recommended` (rules off by default) and `strict` (all rules enforced)
+- Comprehensive documentation for rule configuration in README
+
 ### Changed
 - Repo only update. No changes to dist, just devDependencies
 - Updated .gitignore to allow tracking of package-lock.json 

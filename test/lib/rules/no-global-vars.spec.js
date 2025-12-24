@@ -3,7 +3,7 @@ import noGlobalVars from '../../../lib/rules/no-global-vars.js'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2022,
     sourceType: 'module'
   }
 })
@@ -18,49 +18,25 @@ describe('no-global-vars', () => {
   ruleTester.run('no-global-vars', noGlobalVars, {
     valid: [
       {
-        code: 'it.name',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        }
+        code: 'it.name'
       },
       {
-        code: 'it.value + 5',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        }
+        code: 'it.value + 5'
       },
       {
-        code: 'function test() { const local = 5; return local; }',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        }
+        code: 'function test() { const local = 5; return local; }'
       },
       {
-        code: 'if (true) { let temp = 10; }',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        }
+        code: 'if (true) { let temp = 10; }'
       },
       {
-        code: '(() => { const inner = 1; return inner; })()',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        }
+        code: '(() => { const inner = 1; return inner; })()'
       }
     ],
 
     invalid: [
       {
         code: "const name = 'bill';",
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -70,10 +46,6 @@ describe('no-global-vars', () => {
       },
       {
         code: "let userName = 'john';",
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -84,7 +56,7 @@ describe('no-global-vars', () => {
       {
         code: "var globalVar = 'test';",
         languageOptions: {
-          ecmaVersion: 2020,
+          ecmaVersion: 2022,
           sourceType: 'script'
         },
         errors: [
@@ -96,10 +68,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const a = 1, b = 2;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -113,10 +81,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const {x, y} = obj;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -130,10 +94,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const [first, second] = array;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -147,10 +107,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const {a: aliasedA, ...rest} = obj;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -164,10 +120,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const [head, ...tail] = array;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -181,10 +133,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const {nested: {deep}} = obj;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -194,10 +142,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const {x = 10, y = 20} = obj;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',
@@ -211,10 +155,6 @@ describe('no-global-vars', () => {
       },
       {
         code: 'const [a = 1, b = 2] = array;',
-        languageOptions: {
-          ecmaVersion: 2020,
-          sourceType: 'module'
-        },
         errors: [
           {
             messageId: 'noGlobalVars',

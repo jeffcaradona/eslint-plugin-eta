@@ -33,7 +33,9 @@ Run `npm install --save-dev @jeffcaradona/eslint-plugin-eta` to install this ESL
 
 ### Usage
 
-#### ESM (Recommended)
+#### Basic Setup
+
+##### ESM (Recommended)
 Add this to your `eslint.config.js`:
 ```javascript
 import eta from '@jeffcaradona/eslint-plugin-eta'
@@ -49,7 +51,7 @@ export default [
 ]
 ```
 
-#### CommonJS (v0.3.0+)
+##### CommonJS (v0.3.0+)
 > Available in v0.3.0 and later
 
 Add this to your `eslint.config.cjs`:
@@ -66,6 +68,103 @@ module.exports = [
     }
 ]
 ```
+
+#### Configuring Rules
+
+This plugin provides optional rules that you can enable to enforce best practices in your Eta templates.
+
+##### Available Rules
+
+- `eta/no-global-vars` - Disallow global variable declarations in Eta templates (off by default)
+
+##### Enabling Rules Manually
+
+To enable specific rules, add them to your configuration:
+
+```javascript
+import eta from '@jeffcaradona/eslint-plugin-eta'
+
+export default [
+    {
+        files: ['**/*.eta'],
+        plugins: {
+            eta
+        },
+        processor: 'eta/eta',
+        rules: {
+            'eta/no-global-vars': 'error'  // or 'warn'
+        }
+    }
+]
+```
+
+##### Using Preset Configurations
+
+The plugin provides two preset configurations:
+
+**Recommended** (no rules enabled by default):
+```javascript
+import eta from '@jeffcaradona/eslint-plugin-eta'
+
+export default [
+    {
+        files: ['**/*.eta'],
+        plugins: {
+            eta
+        },
+        processor: 'eta/eta',
+        ...eta.configs.recommended
+    }
+]
+```
+
+**Strict** (enforces all rules):
+```javascript
+import eta from '@jeffcaradona/eslint-plugin-eta'
+
+export default [
+    {
+        files: ['**/*.eta'],
+        plugins: {
+            eta
+        },
+        processor: 'eta/eta',
+        ...eta.configs.strict
+    }
+]
+```
+
+### Rule Details
+
+#### `eta/no-global-vars`
+
+Disallows global variable declarations in Eta templates. This rule encourages passing all data through the template context (`it` object) instead of declaring variables at the global scope.
+
+**Why?** Global variables in templates can lead to:
+- Unclear data dependencies
+- Potential naming conflicts
+- Harder-to-maintain templates
+
+**Example of incorrect code:**
+```eta
+<% const userName = 'John'; %>
+Hello <%= userName %>!
+```
+
+**Example of correct code:**
+```eta
+Hello <%= it.userName %>!
+```
+
+Or use variables within limited scopes:
+```eta
+<% if (it.showGreeting) { 
+  const greeting = 'Hello';
+%>
+  <%= greeting %> <%= it.userName %>!
+<% } %>
+```
+
 
 ## Compatibility Matrix
 

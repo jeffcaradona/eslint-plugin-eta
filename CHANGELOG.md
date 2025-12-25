@@ -6,13 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [0.3.1] - Unreleased
+## [0.4.0] - Unreleased
 
-### Changed
-- Repo only update. No changes to dist, just devDependencies
-- Updated .gitignore to allow tracking of package-lock.json 
+### Added
+- Optional `eta/no-global-vars` rule to disallow global variable declarations in Eta templates
+  - **Disabled by default** in the `recommended` config (non-breaking)
+  - Available in the optional `strict` preset for users who want strict enforcement
+- Two preset configurations for rule management:
+  - `recommended` - conservative defaults, all rules off (backward compatible)
+  - `strict` - opt-in enforcement of all available rules
+- Comprehensive rule documentation with examples in README
+
+## [0.3.1] - Unreleased
+- Repo housekeeping updates (no changes to dist)
+- Updated .gitignore to allow tracking of package-lock.json
 - Added npm overrides to package.json to enforce "test-exclude": "^7.0.1" or better
 - Remove dependencies on glob@7.2.3 and inflight@1.0.6
+
+### Note
+- Feature branch development: This version is unreleased and will be merged to main before npm publication
+- More optional rules planned before initial npm release
 
 
 ## [0.3.0] - Released
